@@ -1,0 +1,75 @@
+
+apiVersion: v1
+baseDomain: amar.com
+
+metadata:
+  name: ocp
+
+compute:
+  - name: worker
+    hyperthreading: Enabled
+    replicas: 0
+
+controlPlane:
+  name: master
+  hyperthreading: Enabled
+  replicas: 3
+
+networking:
+  clusterNetwork:
+    - cidr: 10.128.0.0/14
+      hostPrefix: 23
+  machineNetwork:
+    - cidr: 192.168.1.0/24
+  networkType: OVNKubernetes
+  serviceNetwork:
+    - 172.30.0.0/16
+
+platform:
+  none: {}
+
+fips: false
+
+pullSecret:  '{"auths":{"cloud.openshift.com":{"auth":"b3BlbnNoaWZ0LXJlbGVhc2UtZGV2K29jbV9hY2Nlc3NfNGFhN2MwNmYzMmQzNDdkMWExZDcyYTNlMTFjZWQ1YmE6VzZFR1JYOFNJR0g5TkRXWUk3T0lWVTE0Sjc3MjNUVDlYVENWWUFMTzk2SjE5TDVDR0ZGWE5WNDY0NFA4Szk4Rw==","email":"amar@silvereye.co"},"quay.io":{"auth":"b3BlbnNoaWZ0LXJlbGVhc2UtZGV2K29jbV9hY2Nlc3NfNGFhN2MwNmYzMmQzNDdkMWExZDcyYTNlMTFjZWQ1YmE6VzZFR1JYOFNJR0g5TkRXWUk3T0lWVTE0Sjc3MjNUVDlYVENWWUFMTzk2SjE5TDVDR0ZGWE5WNDY0NFA4Szk4Rw==","email":"amar@silvereye.co"},"registry.connect.redhat.com":{"auth":"fHVoYy1wb29sLWYwMWViNzczLTUzMDUtNDczZC1iM2M0LWM5ZDNmMmM2N2FhZjpleUpoYkdjaU9pSlNVelV4TWlKOS5leUp6ZFdJaU9pSTVPR0pqWm1aa01qQXlZMlUwTnpsaU9EVTNNelpoTkdVelpXVmlaak0zWVNKOS5rQlNDVVNvNkotb2FZblRZNEdkM1VJdmRhQzJ3d1dYb0lPd0xVdDllSGNISE16QkNsejVSOUQtSkR3SGxjLWVKR3AwZVZSOW9pTWdsUU1jOEswMTZjUWpjZXV6MkZSWXc5MjN4NTR0RmhCQVdiUXpOUC0yZmhiUXRTclgxTHVmRm5nTGViRzdmMlhSd3paVXkwV2wyQXhabEw3bHJid3kwUGZLc3JleWdHbHBPT3Z3c3ZDOGU1WnYyWkV0X3p1NHNaaTZ0RS1zRzZJQzRVSWdFRm9jMkJ0YWlQY0Q1VjMta3d3dE9LckhLVmExRUFIUzFiSGRQbXVFdk5kbjdaUFVTV1JDTjQ1ZHk4Qk9kdXZyRzZ1ZTg3bVduZFFpQ2dMeW9ueVJrTUZuRFp5MV92RFc2LVh0Yks1c1VNNUtYMGktZjVaZU5VRWpvOVBKbjRtMTZZMk9rVWI2MU4yQ1hjMTBoOUx0WnMzd1dMTDA1Nk53dTVBOEFZM3JSU1hkTDU5VVhUUF81cVB5bE5kSTNqc2t5bHBOcG16OGhUc1hDWjBaWWJvV3JhNmczM2R6TlpWU3h5bmpDdUxRUnc2ZS1rd2dQaFhWbjY4QzBYdlc4eUtPVndiVTNzQjdjVlh6WFI5SUNhNjhkOURkdjZueGpCemxSYTNvTXltS2ZnQ21hTUQyN21WUWhHZUtwS2lmY1NtWEs1SFdmc3M5YVhDTEVxT2g2VXhQbmhaNmVLT3pSZ0pvS0w4ZlhCNEc5dExwRFlxcFZVR0licU9HcnNGNC1SX3l0NFZZb3JDUVVXSzBQLVRsNEM5RDVCOWN3aTBqUVdWeklWeHN1MFVrMmFEeS1qWkpsNjRqd2g4ejhwYlZtdVRCOWpVWVdHZFB0TENOTFZ5LUJUTkV4N05KRTVIZw==","email":"amar@silvereye.co"},"registry.redhat.io":{"auth":"fHVoYy1wb29sLWYwMWViNzczLTUzMDUtNDczZC1iM2M0LWM5ZDNmMmM2N2FhZjpleUpoYkdjaU9pSlNVelV4TWlKOS5leUp6ZFdJaU9pSTVPR0pqWm1aa01qQXlZMlUwTnpsaU9EVTNNelpoTkdVelpXVmlaak0zWVNKOS5rQlNDVVNvNkotb2FZblRZNEdkM1VJdmRhQzJ3d1dYb0lPd0xVdDllSGNISE16QkNsejVSOUQtSkR3SGxjLWVKR3AwZVZSOW9pTWdsUU1jOEswMTZjUWpjZXV6MkZSWXc5MjN4NTR0RmhCQVdiUXpOUC0yZmhiUXRTclgxTHVmRm5nTGViRzdmMlhSd3paVXkwV2wyQXhabEw3bHJid3kwUGZLc3JleWdHbHBPT3Z3c3ZDOGU1WnYyWkV0X3p1NHNaaTZ0RS1zRzZJQzRVSWdFRm9jMkJ0YWlQY0Q1VjMta3d3dE9LckhLVmExRUFIUzFiSGRQbXVFdk5kbjdaUFVTV1JDTjQ1ZHk4Qk9kdXZyRzZ1ZTg3bVduZFFpQ2dMeW9ueVJrTUZuRFp5MV92RFc2LVh0Yks1c1VNNUtYMGktZjVaZU5VRWpvOVBKbjRtMTZZMk9rVWI2MU4yQ1hjMTBoOUx0WnMzd1dMTDA1Nk53dTVBOEFZM3JSU1hkTDU5VVhUUF81cVB5bE5kSTNqc2t5bHBOcG16OGhUc1hDWjBaWWJvV3JhNmczM2R6TlpWU3h5bmpDdUxRUnc2ZS1rd2dQaFhWbjY4QzBYdlc4eUtPVndiVTNzQjdjVlh6WFI5SUNhNjhkOURkdjZueGpCemxSYTNvTXltS2ZnQ21hTUQyN21WUWhHZUtwS2lmY1NtWEs1SFdmc3M5YVhDTEVxT2g2VXhQbmhaNmVLT3pSZ0pvS0w4ZlhCNEc5dExwRFlxcFZVR0licU9HcnNGNC1SX3l0NFZZb3JDUVVXSzBQLVRsNEM5RDVCOWN3aTBqUVdWeklWeHN1MFVrMmFEeS1qWkpsNjRqd2g4ejhwYlZtdVRCOWpVWVdHZFB0TENOTFZ5LUJUTkV4N05KRTVIZw==","email":"amar@silvereye.co"}}}'
+
+
+sshKey: 'ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIB/SNlefLJEjaKSEzUX5ZIOkJ6HuvmRnLHPEcXjEa0bL root@bastion.ocp.amar.com'
+
+additionalTrustBundle: |
+  -----BEGIN CERTIFICATE-----
+  MIID3zCCAsegAwIBAgIUbl61qS1PyMNisUVPgyGEDeI8AdkwDQYJKoZIhvcNAQEL
+  BQAwbTELMAkGA1UEBhMCVVMxCzAJBgNVBAgMAlZBMREwDwYDVQQHDAhOZXcgWW9y
+  azENMAsGA1UECgwEUXVheTERMA8GA1UECwwIRGl2aXNpb24xHDAaBgNVBAMME21p
+  cnJvci5vY3AuYW1hci5jb20wHhcNMjYxMDI3MTIwNDQ4WhcNMjkwODE2MTIwNDQ4
+  WjBtMQswCQYDVQQGEwJVUzELMAkGA1UECAwCVkExETAPBgNVBAcMCE5ldyBZb3Jr
+  MQ0wCwYDVQQKDARRdWF5MREwDwYDVQQLDAhEaXZpc2lvbjEcMBoGA1UEAwwTbWly
+  cm9yLm9jcC5hbWFyLmNvbTCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEB
+  AJgggg1gPy7f+nV8XZmM6h2wGLYkI0lq4zSwnn4/vboW0MazQFC0YQx6ttPhajAF
+  tfmPFXHXMG6Yt9Fgb9JQbgGRwqUcE96nLQDSNvZNHSRVJNFdGdhAuKNzHaVw+YAB
+  1/NY4XTYNy+wOF8HhYLW5Te+kq5jFZEl8s1uyPG7uTJMH+0b4bjKQi122g/HOHmS
+  x9PPGKla5lMSvwrsdaTGiMHc69GeacNxpIWf7sa96QcXCg/F6LI3zsfi1hvwZRXB
+  q8gQ63f14fYGP1bAUxKbpXCpgCOLf3cGJq5iuxGles8WS1LrzMzZZff3Nt2hSE63
+  8csn9oplrYqlIbreA5AqC8cCAwEAAaN3MHUwCwYDVR0PBAQDAgLkMBMGA1UdJQQM
+  MAoGCCsGAQUFBwMBMB4GA1UdEQQXMBWCE21pcnJvci5vY3AuYW1hci5jb20wEgYD
+  VR0TAQH/BAgwBgEB/wIBATAdBgNVHQ4EFgQU/ji5OBLtOVsTYFEzXGgw4jTyVIcw
+  DQYJKoZIhvcNAQELBQADggEBAIox5W67X/OWowABRUIN7dcnXIdUqwf8+EKKW2lE
+  aG0XLVS0fZMpaDGnsHfK8NmuXpSdBwFdtOse8zGSzFAxhzPP6RBV4t7cIr1utZkl
+  aqaqblHdTuEuJKjrr2AiUOqNQLP/ffIU05XhW8zpN+04CY2KiuvdB3hHF7tGAYv+
+  yDyjoHwvNq5H9m07up+l1kby0MYA7wdFjwfXiyjow/AJRBDPPaT+btzmDONY4BNU
+  kpYIqjd81Jr2FhwGTUyMCsmxvtwlw7JHPI+zvICjRgtKdXBb3N5fOc+P+ShTBnJ8
+  SxmvM7iZub/RqAyT/vVNBbK/xPFwaoUEg34M2AGpiUZNflU=
+  -----END CERTIFICATE-----
+
+# These are your existing operator-image mappings.
+# Keep them only if they match the actual mirror output.
+imageContentSources:
+  - mirrors:
+    - mirror.ocp.amar.com:8443/container-native-virtualization
+    source: registry.redhat.io/container-native-virtualization
+  - mirrors:
+    - mirror.ocp.amar.com:8443/openshift4
+    source: registry.redhat.io/openshift4
+  - mirrors:
+    - mirror.ocp.amar.com:8443/migration-toolkit-virtualization
+    source: registry.redhat.io/migration-toolkit-virtualization
+

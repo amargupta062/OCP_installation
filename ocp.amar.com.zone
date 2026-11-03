@@ -1,0 +1,24 @@
+$TTL 86400
+@   IN  SOA ns1.amar.com. root.amar.com. (
+        2026102701
+        3600
+        1800
+        604800
+        86400
+)
+
+@           IN  NS  ns1.amar.com.
+ns1         IN  A   192.168.1.61
+bastion	    IN  A   192.168.1.61
+
+api         IN  A   192.168.1.75
+api-int     IN  A   192.168.1.75
+*.apps	    IN	A   192.168.1.75
+
+bootstrap   IN  A   192.168.1.71
+
+master1     IN  A   192.168.1.72
+master2     IN  A   192.168.1.73
+master3     IN  A   192.168.1.74
+mirror	    IN  A   192.168.1.59
+worker1	    IN 	A   192.168.1.76
